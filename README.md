@@ -1,21 +1,63 @@
-# @ntc/event-listener
+# ntc-event-listener
 
-Des
+A simple Event Listener for JavaScript projects
 
 ## Installation
 
 ```sh
-npm install @ntc/event-listener
+yarn add ntc-event-listener
 ```
 
 ## Usage
 
-```js
-import { multiply } from '@ntc/event-listener';
+| Method                   | Return                                                 | description                     |
+|--------------------------|--------------------------------------------------------|---------------------------------|
+| addListener on           | EventId \| undefined                                   | return undefined means error    |
+| removeListener rm        | boolean                                                | true on success otherwise false |
+| removeAllListeners rmAll | undefined                                              |                                 |
+| emitListener emit        | any                                                    |                                 |
+| getListenerList          | ({ id: EventId, description?: string } \| undefined)[] |                                 |                                    |
 
+```tsx
+import EventListener from 'ntc-event-listener';
+
+type EventDataType = {
+  'open-modal': ModalDataType;
+  'open-toast': undefined;
+  /// ...
+};
+const MyEventListener = new EventListener<EventDataType>();
+export default MyEventListener;
+```
+
+```tsx
+// ...
+import MyEventListener from '../MyEventListener';
 // ...
 
-const result = await multiply(3, 7);
+const MyToast = (props: Props) => {
+  // ...
+  useEffect(() => {
+    // Add event listener "open-toast"
+    MyEventListener.on('open-toast', (data) => {
+      // ... Do "open-toast" action
+    });
+    () => {
+      // Remove event listener "open-toast"
+      MyEventListener.rm('open-toast');
+    };
+  }, []);
+};
+// ...
+
+// ...
+const OtherView = (props: Props) => {
+  // ...
+  const _openToast = () => {
+    MyEventListener.emit('open-toast', 'Hello');
+  };
+};
+// ...
 ```
 
 ## Contributing
@@ -27,5 +69,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 MIT
 
 ---
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)

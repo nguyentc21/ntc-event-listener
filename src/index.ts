@@ -17,7 +17,7 @@ const isValidId = (id: any) => {
   return false;
 };
 
-class EventListener<ED extends EventDataType = {}> {
+class EventListener<ED extends EventDataType = any> {
   private LISTENER_DATA: {
     [K in EventIdUnionType<ED>]?: ListenerDataType<ED, K>;
   };
@@ -52,7 +52,7 @@ class EventListener<ED extends EventDataType = {}> {
   emitListener<EI extends EventIdUnionType<ED>>(
     id: EI,
     data: ED[EI],
-  ): ReturnType<CallBackType<ED, EI>> | undefined {
+  ) {
     if (!(id in this.LISTENER_DATA)) return;
     return this.LISTENER_DATA[id]?.callback?.(data);
   }

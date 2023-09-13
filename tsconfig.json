@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@ntc/event-listener": ["./src/index"]
+      "ntc-event-listener": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

@@ -1,5 +1,5 @@
 {
-  "name": "@ntc/event-listener",
+  "name": "ntc-event-listener",
   "version": "1.0.0",
   "description": "A simple Event Listener for JavaScript projects",
   "main": "lib/commonjs/index",
@@ -26,21 +26,19 @@
     "!**/.*"
   ],
   "scripts": {
-    "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "release": "release-it",
+    "prepack": "bob build",
     "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn install"
   },
   "keywords": [
-    "@ntc/event-listener",
+    "ntc-event-listener",
     "event-listener",
-    "@ntc/listener",
-    "@ntc/event",
+    "@ntc/event-listener",
     "listener",
-    "js-event-listener",
-    "ntc-event-listener"
+    "js-event-listener"
   ],
   "repository": "https://github.com/nguyentc21/ntc-event-listener",
   "author": "Nguyen Tc <nguyentc21@gmail.com> (https://github.com/nguyentc21)",
@@ -51,6 +49,11 @@
   "homepage": "https://github.com/nguyentc21/ntc-event-listener#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "react-native-builder-bob": "^0.21.3",
+    "typescript": "^5.0.2"
   },
   "engines": {
     "node": ">= 16.0.0"
@@ -106,5 +109,19 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
   }
 }
