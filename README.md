@@ -1,11 +1,11 @@
-# ntc-event-listener
+# @nguyentc21/event-listener
 
 A simple Event Listener for JavaScript projects
 
 ## Installation
 
 ```sh
-yarn add ntc-event-listener
+yarn add @nguyentc21/event-listener
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ yarn add ntc-event-listener
 | getListenerList          | ({ id: EventId, description?: string } \| undefined)[] |                                 |                                    |
 
 ```tsx
-import EventListener from 'ntc-event-listener';
+import EventListener from '@nguyentc21/event-listener';
 
 type EventDataType = {
   'open-modal': ModalDataType;
