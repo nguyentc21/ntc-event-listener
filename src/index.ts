@@ -39,8 +39,8 @@ class EventListener<ED extends EventDataType = any> {
     return id;
   }
 
-  removeListener<EI extends EventIdUnionType<ED>>(id: EI) {
-    if (!isValidId(id) || !(id in this.LISTENER_DATA)) return false;
+  removeListener<EI extends EventIdUnionType<ED>>(id?: EI) {
+    if (!id || !isValidId(id) || !(id in this.LISTENER_DATA)) return false;
     delete this.LISTENER_DATA[id];
     return true;
   }

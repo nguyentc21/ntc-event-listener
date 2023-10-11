@@ -1,6 +1,6 @@
 {
   "name": "@nguyentc21/event-listener",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple Event Listener for JavaScript projects",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -34,6 +34,7 @@
     "bootstrap": "yarn example && yarn install"
   },
   "keywords": [
+    "nguyentc21",
     "@nguyentc21/event-listener",
     "ntc-event-listener",
     "event-listener",
