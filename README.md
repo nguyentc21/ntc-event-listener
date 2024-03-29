@@ -26,7 +26,7 @@ type EventDataType = {
   'open-toast': undefined;
   /// ...
 };
-const MyEventListener = new EventListener<EventDataType>();
+const MyEventListener = new EventListener<EventDataType>('MY-LISTENERS');
 export default MyEventListener;
 ```
 

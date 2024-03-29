@@ -53,6 +53,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
+    "@types/node": "^20.11.30",
     "prettier": "^2.0.5",
     "react-native-builder-bob": "^0.21.3",
     "typescript": "^5.0.2"
