@@ -42,8 +42,7 @@ class EventListener<ED extends EventDataType = any> {
     };
     if (!!this.isDebug) {
       console.log(
-        `${this.name} - Add listener (∑${
-          Object.keys(this.LISTENER_DATA).length
+        `${this.name} - Add listener (∑${Object.keys(this.LISTENER_DATA).length
         }): `,
         id
       );
@@ -56,8 +55,7 @@ class EventListener<ED extends EventDataType = any> {
     delete this.LISTENER_DATA[id];
     if (!!this.isDebug) {
       console.log(
-        `${this.name} - Remove listener (∑${
-          Object.keys(this.LISTENER_DATA).length
+        `${this.name} - Remove listener (∑${Object.keys(this.LISTENER_DATA).length
         }): `,
         id
       );
@@ -69,8 +67,7 @@ class EventListener<ED extends EventDataType = any> {
     this.LISTENER_DATA = {};
     if (!!this.isDebug) {
       console.log(
-        `${this.name} - Remove ALL listener (∑${
-          Object.keys(this.LISTENER_DATA).length
+        `${this.name} - Remove ALL listener (∑${Object.keys(this.LISTENER_DATA).length
         })`
       );
     }
@@ -80,8 +77,7 @@ class EventListener<ED extends EventDataType = any> {
     if (!(id in this.LISTENER_DATA)) return;
     if (!!this.isDebug) {
       console.log(
-        `${this.name} - Emit listener (∑${
-          Object.keys(this.LISTENER_DATA).length
+        `${this.name} - Emit listener (∑${Object.keys(this.LISTENER_DATA).length
         }): `,
         id
       );
@@ -103,6 +99,20 @@ class EventListener<ED extends EventDataType = any> {
   emit = this.emitListener;
   rm = this.removeListener;
   rmAll = this.removeAllListeners;
+
+  emitPromise<EI extends EventIdUnionType<ED>>(
+    id: EI,
+    data: Omit<ED[EI], 'cb' | 'rj' | 'callback' | 'reject'>,
+  ) {
+    type R = Parameters<ED[EI]['callback']>[0] | Parameters<ED[EI]['cb']>[0];
+    return new Promise<R>((resolve, reject) => {
+      this.emitListener(id, {
+        ...(data as ED[EI]),
+        cb: resolve,
+        rj: reject,
+      });
+    });
+  }
 }
 
 export default EventListener;
